@@ -1,0 +1,28 @@
+name: VerifiedGestalt
+options:
+  bundleIdPrefix: com.angel
+  deploymentTarget:
+    iOS: '26.0'
+targets:
+  VerifiedGestalt:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources/WorseGestalt
+      - path: Sources/CQueryBridges
+    info:
+      path: Info.plist
+      properties:
+        CFBundleDisplayName: Verified Gestalt
+        UILaunchScreen: {}
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.angel.verifiedgestalt
+        SWIFT_VERSION: '5.0'
+        CODE_SIGN_ENTITLEMENTS: entitlements.plist
+        SWIFT_OBJC_BRIDGING_HEADER: Sources/CQueryBridges/include/CQueryBridges.h
+        HEADER_SEARCH_PATHS: $(SRCROOT)/Sources/CQueryBridges/include
+        GENERATE_INFOPLIST_FILE: YES
+        TARGETED_DEVICE_FAMILY: '1'
+        MARKETING_VERSION: '0.1.0'
+        CURRENT_PROJECT_VERSION: '1'

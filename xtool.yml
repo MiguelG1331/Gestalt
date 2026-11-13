@@ -1,0 +1,5 @@
+version: 1
+bundleID: com.angel.verifiedgestalt
+product: worsegestalt
+infoPath: Info.plist
+entitlementsPath: entitlements.plist

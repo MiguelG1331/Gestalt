@@ -1,0 +1,26 @@
+name: Build unsigned IPA
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install project generator
+        run: brew install xcodegen
+      - name: Generate project
+        run: xcodegen generate
+      - name: Compile
+        run: xcodebuild -project VerifiedGestalt.xcodeproj -scheme VerifiedGestalt -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGNING_ALLOWED=NO build
+      - name: Package unsigned IPA
+        run: |
+          mkdir -p dist/Payload
+          cp -R build/Build/Products/Release-iphoneos/VerifiedGestalt.app dist/Payload/
+          cd dist
+          zip -qr VerifiedGestalt-unsigned.ipa Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: VerifiedGestalt-unsigned
+          path: dist/VerifiedGestalt-unsigned.ipa
