@@ -11,7 +11,7 @@ import SwiftUI
 struct WorseGestaltApp: App {
     var body: some Scene {
         WindowGroup {
-            VerifiedAIView()
+            ContentView()
         }
     }
 }

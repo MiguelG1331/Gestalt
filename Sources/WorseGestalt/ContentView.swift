@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  worsegestalt
 //
-//  Root shell of the app: four tabs (Gestalt / Presets / Backups / Log).
+//  Root shell of the app: five tabs (Verified AI / Gestalt / Presets / Backups / Log).
 //
 //  SPDX-License-Identifier: GPL-3.0-or-later
 //
@@ -26,6 +26,8 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
+            VerifiedAIView(store: store)
+                .tabItem { Label("Verified AI", systemImage: "sparkles") }
             GestaltTabView(store: store)
                 .tabItem { Label("Gestalt", systemImage: "cpu") }
             PresetsView(store: store)
@@ -36,7 +38,7 @@ struct ContentView: View {
                 .tabItem { Label("Log", systemImage: "terminal") }
         }
         .alert(
-            "Worse Gestalt",
+            "Verified Gestalt",
             isPresented: Binding(
                 get: { AlertCenter.shared.isPresented },
                 set: { AlertCenter.shared.isPresented = $0 }
